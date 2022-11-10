@@ -1,6 +1,21 @@
 import 'package:labflutter/form.dart';
 import 'package:flutter/material.dart';
 
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyFormPage(),
+    );
+  }
+}
+
 class MyFormPage extends StatefulWidget {
   const MyFormPage({super.key});
 
@@ -30,6 +45,33 @@ class _MyFormPageState extends State<MyFormPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Form'),
+      ),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            // Adding clickable menu
+            ListTile(
+              title: const Text('Counter'),
+              onTap: () {
+                // Routing the menu to the main page
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyFormPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Form'),
+              onTap: () {
+                // Routing the menu to the form page
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyFormPage()),
+                );
+              },
+            ),
+          ],
+        ),
       ),
       body: Form(
         key: _formKey,
